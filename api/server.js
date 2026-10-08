@@ -6,8 +6,8 @@ const dotenv = require('dotenv')
 const driveMD = "mongodb+srv://miqueiaseds_db_user:<db_password>@miqueias.88b03ki.mongodb.net/?appName=Miqueias"
 const{ MongoClient } = require('mongodb')
 
-
 dotenv.config()
+
 const url = process.env.DATABASE.URL
 
 api.set("view engine", "ejs")
