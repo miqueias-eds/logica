@@ -1,19 +1,20 @@
-const protocolo = require('express')
+const express = require('express')
 const api = express()
-const app = protocolo()
-const exibir = require('ejs')
-const executar = require('nodemon')
-const mongodb = require('mongodb')
+const ejs = require('ejs')
+const nodemon = require('nodemon')
 const dotenv = require('dotenv')
 const driveMD = "mongodb+srv://miqueiaseds_db_user:<db_password>@miqueias.88b03ki.mongodb.net/?appName=Miqueias"
-//mongodb+srv://miqueiaseds_db_user:<db_password>@miqueias.88b03ki.mongodb.net/?appName=Miqueias
+const{ MongoClient } = require('mongodb')
 
-app.listen(3000, function(){
+
+dotenv.config()
+const url = process.env.DATABASE.URL
+
+api.set("view engine", "ejs")
+
+api.listen(3000, function(){
     console.log("O nosso servidor está na porta 3000")})
 
-
-
-app.get('/ler', (request, response)=> {
+api.get('/ler', (request, response)=> {
     response.send('Olá, mundo')
 })
-DATABASE_URL=DRIVE
