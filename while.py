@@ -12,7 +12,18 @@
       #print (f"numero: {i}")
 
 
-n = 0
+qtd = 0
+soma = 0
+media = 0
+valor = float(input("Digite um valor: "))
 
-if (n < 20):
-    print("n")
+while(valor > 0.0):
+    soma = soma + valor
+    qtd = qtd + 1
+
+    valor = float(input("Digite um valor: "))
+
+media = media / qtd
+print("\n total da soma: ", soma)
+print("\n Quantidade de valores digitados: ", qtd)
+print("\n Média de valores: ", media)

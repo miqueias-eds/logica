@@ -8,8 +8,6 @@ const{ MongoClient } = require('mongodb')
 
 dotenv.config()
 
-const url = process.env.DATABASE.URL
-
 api.set("view engine", "ejs")
 
 api.listen(3000, function(){
