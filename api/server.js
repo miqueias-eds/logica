@@ -5,8 +5,19 @@ const nodemon = require('nodemon')
 const dotenv = require('dotenv')
 const driveMD = "mongodb+srv://miqueiaseds_db_user:<db_password>@miqueias.88b03ki.mongodb.net/?appName=Miqueias"
 const{ MongoClient } = require('mongodb')
-
 dotenv.config()
+const url = process.env.DATABASE_URL
+//fazer query com _id do mongodb
+
+const ObjectId = require("mongodb").ObjectId
+
+const client = new MongoClient(url)
+//cria o banco de dados com o nome de pessoas
+
+const db = client.db("pessoa")
+//cria um collection com o nome crud(create table crud)
+
+const collection = db.collection("crud")
 
 api.set("view engine", "ejs")
 
