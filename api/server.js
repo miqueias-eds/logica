@@ -27,3 +27,14 @@ api.listen(3000, function(){
 api.get('/ler', (request, response)=> {
     response.send('Olá, mundo')
 })
+
+api.post("/show", (req, res) => {
+    collection.insertOne(req.body, (err, results)=>{
+        if(err) return console.log(err)
+        console.log("Salvou com sucesso no nosso banco")
+        res.redirect("/show")
+        collection.find().toArray(err, results) => {
+            console.log(results)
+        }
+    })
+})
