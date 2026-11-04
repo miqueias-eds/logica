@@ -5,6 +5,8 @@ const nodemon = require('nodemon')
 const dotenv = require('dotenv')
 const driveMD = "mongodb+srv://miqueiaseds_db_user:<db_password>@miqueias.88b03ki.mongodb.net/?appName=Miqueias"
 const{ MongoClient } = require('mongodb')
+const bodyParser = require('body-parser')
+
 dotenv.config()
 const url = process.env.DATABASE_URL
 //fazer query com _id do mongodb
@@ -19,15 +21,18 @@ const db = client.db("pessoa")
 
 const collection = db.collection("crud")
 
+api.use(bodyParser.urlencoded({ extended: true } ))
+
 api.set("view engine", "ejs")
 
-app.get('/', (req, res) => {
-    res.render('index.ejs')
-})
+api.get('/index', (req, res) => {
+    res.render('index.ejs') })
 
 api.listen(3000, function(){
-    console.log("O nosso servidor está na porta 3000")})
+    console.log("O nosso servidor está na porta 3000") })
 
 api.get('/ler', (req, res)=> {
-    res.send('Hello World')
-})
+    res.send('Faz o pix') })
+
+api.post('/show', (req, res) => {
+    console.log(req.body) })
