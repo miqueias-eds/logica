@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registro de provas</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+    .bree-serif-regular {
+        font-family: "Bree Serif", serif;
+        font-weight: 400;
+        font-style: normal;
+}
+  :root {
+    --ink: #1c2a2e;
+    --muted: #566368;
+    --line: #cdd6d9;
+    --wash: #f1f5f6;
+    --accent: #0e5a63;
+    --accent-dark: #0a444b;
+    --accent-ink: #ffffff;
+    --warn-bg: #fff3d6;
+    --warn-ink: #5c3d00;
+    --err: #a61b1b;
+    --ok: #17603a; }
+  * { box-sizing: border-box; }
+  
+  .telouemail {
+    color: #1671a6;
+  }
+  
+  .nomeouapelido {
+    color: #1671a6;
+  }
+  
+  .zip {
+    color: #0b9eb2;
+    font-size: 18px;
+  }
+
+  .registrodeprovas {
+    color: #005180;
+    font-size: 30px;
+  }
+
+  .oregistro {
+    color: #0b9eb2;
+  }
+
+  .registredossie {
+    color: #005180;
+    font-size: 30px;
+  }
+
+  .comovocequerseidentificar {
+    color: #1671a6;
+  }
+
+  .desc::placeholder {
+    color: #0b9eb2;
+  }
+
+  .relat {
+    color: #1671a6;
+  }
+
+  .escolhaopcao {
+    color: #1671a6;
+  }
+
+  .tipoocor {
+    color: #1671a6;
+  }
+
+  .conteoque {
+    color: #005180;
+    font-size: 30px;
+  }
+
+  .solte {
+    color: #1671a6;
+    font-size: 20px;
+  }
+
+  .imgint {
+    color: #0b9eb2;
+    font-size: 18px;
+  }
+
+  .antesdeenviar {
+    color: #1671a6;
+    font-size: 20px;
+  }
+
+  .escolha {
+    color: #005180;
+    font-size: 30px;
+  }
+
+  .tratament {
+    color: #1671a6;
+    font-size: 17px;
+  }
+
+  .term {
+    color: #1671a6;
+    font-size: 17px;
+  }
+
+  .denunc {
+    color: #0b9eb2;
+    font-size: 18px;
+  }
+
+  .autorize {
+    color: #005180;
+    font-size: 30px;
+  }
+  
+  .registprov {
+    color: #005180;
+    font-size: 30px;
+  }
+  .logosafemidia a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%; }
+
+  .textologosm {
+    font-size: 24px;
+    color: #39a0ff;
+    line-height: 1;
+    margin: 0; }
+  .logosm {
+    width: 80px; 
+    height: 80px; 
+    object-fit: contain;
+    display: block; }
+
+  html, body { 
+    margin: 0; 
+    background: #cbe6ff; 
+    color: var(--ink); 
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  
+
+  .wrap { 
+    max-width: 720px; 
+    margin: 0 auto; 
+    padding: 20px 16px 40px; }
+  
+  h1, h2 { 
+    font-family: Georgia, "Times New Roman", serif; 
+    font-weight: 700; 
+    line-height: 1.2; 
+    margin: 0; }
+  
+  h1 { font-size: 1.9rem; }
+  
+  h2 { font-size: 1.25rem; 
+    margin-bottom: 8px; }
+  
+  p { margin: 0 0 10px; }
+  
+  .lead { color: #0b9eb2;
+     max-width: 60ch; 
+     margin-top: 8px;
+     font-size: 18px;
+    }
+  
+  .demo { margin: 16px 0 24px; 
+    padding: 12px 14px; 
+    background: #b3daff; 
+    color: #1671a6; 
+    border-left: 4px solid #56aefe; 
+    border-radius: 4px; 
+    font-size: 20px; }
+
+  ol.steps { list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    counter-reset: passo; }
+  
+  .step { position: relative; 
+    counter-increment: passo; 
+    padding: 0 0 28px 52px; 
+    border-left: 2px solid var(--line); 
+    margin-left: 16px; 
+    transition: opacity .2s; }
+  
+  .step:last-child { border-left-color: transparent; 
+    padding-bottom: 0; }
+  
+  .step::before { content: counter(passo); 
+    position: absolute; 
+    left: -17px; 
+    top: 0; 
+    width: 32px; 
+    height: 32px; 
+    border-radius: 50%; 
+    background: var(--accent); 
+    color: var(--accent-ink); 
+    display: grid; 
+    place-items: center; 
+    font-weight: 700; }
+  
+  .step.locked { opacity: .45; }
+  
+  .step.locked::before { background: var(--muted); }
+  
+  .step { padding-left: 28px; }
+  
+  .hint { color: #0b9eb2; 
+    font-size: .92rem; }
+
+  details { margin: 6px 0 12px; 
+    font-size: .95rem; }
+  
+  summary { cursor: pointer; 
+    color: var(--accent); }
+  
+  .check { display: flex; 
+    gap: 10px; 
+    align-items: flex-start; 
+    margin-top: 8px; }
+  
+  .check input { margin-top: 5px; 
+    width: 18px; 
+    height: 18px; 
+    flex: none; }
+
+  .aviso { margin: 8px 0 14px; 
+    padding: 12px 14px; 
+    background: #b3daff; 
+    border: 0.3px solid #206086; 
+    border-radius: 25px; 
+    font-size: .93rem; }
+  
+  .aviso strong { display: block; 
+    margin-bottom: 2px; }
+
+  #drop { border: 0.9px dashed #206086; 
+    background: #b3daff; 
+    border-radius: 25px; 
+    padding: 26px 16px; 
+    text-align: center; 
+    cursor: pointer; 
+    transition: border-color .15s, background .15s; }
+  
+  #drop:hover, #drop:focus-visible, #drop.over { border-color: var(--accent); 
+    background: #c1e1ff; 
+    outline: none; }
+  
+  #drop strong { display: block; 
+    font-size: 1.05rem; }
+  
+  #drop span { color: var(--muted); 
+    font-size: .93rem; }
+  
+  #file { display: none; }
+
+  ul#lista { list-style: none; 
+    margin: 14px 0 0; 
+    padding: 0; 
+    border-top: 1px solid var(--line); }
+  
+   #lista > li { padding: 12px 2px; 
+    border-bottom: 1px solid var(--line); }
+  
+  .linha { display: flex; 
+    gap: 12px; 
+    align-items: flex-start; }
+  
+  .linha .info { flex: 1; 
+    min-width: 0; }
+  
+  .nome { font-weight: 600; 
+    overflow-wrap: anywhere;
+    font-size: 18px; }
+  
+  .meta { color: var(--muted); 
+    font-size: 18px; }
+  
+  .hash { font-family: ui-monospace, Menlo, Consolas, monospace; 
+    font-size: 16px; 
+    color: var(--muted); 
+    overflow-wrap: anywhere; 
+    margin-top: 2px; }
+  
+  .erro { color: var(--err); 
+    font-size: .9rem; }
+  
+  .interno { margin: 6px 0 0 0; 
+    font-size: .85rem; }
+  
+  .interno div { padding: 4px 0; 
+    border-top: 1px solid var(--wash); 
+    overflow-wrap: anywhere; }
+
+  label { display: block; 
+    font-weight: 600; 
+    margin: 14px 0 4px; }
+  
+  select, textarea, input[type=text] { width: 100%; 
+    font: inherit; 
+    color: inherit; 
+    padding: 9px 10px; 
+    border: 1px solid #206086; 
+    border-radius: 10px; 
+    background: #b3daff; }
+  
+  textarea { min-height: 96px; 
+    resize: vertical; }
+  
+  fieldset { border: 0; 
+    padding: 0; 
+    margin: 16px 0 0; }
+  
+  legend { font-weight: 600; 
+    padding: 0; 
+    margin-bottom: 4px; }
+  
+  .radio { display: flex; 
+    gap: 10px; 
+    align-items: center; 
+    margin: 6px 0; 
+    font-weight: 400;
+    color: #0b9eb2;
+    font-size: 18px;
+   }
+  
+  .radio input { width: 18px; 
+    height: 18px; 
+    margin: 0;
+  }
+  
+  #contato { margin-top: 4px; }
+
+  button { font: inherit; 
+    border: 1px solid var(--accent); 
+    background: #39a0ff; 
+    color: #005180; 
+    border-radius: 10px; 
+    padding: 8px 16px; 
+    cursor: pointer; }
+  
+  button:hover:not(:disabled), button:focus-visible { background: var(--accent); 
+    color: var(--accent-ink); 
+    outline: none; }
+  
+  button.principal { background: #39a0ff; 
+    color: #005180; }
+  
+  button.principal:hover:not(:disabled), button.principal:focus-visible { background: var(--accent-dark); }
+  
+  button:disabled { opacity: .5; 
+    cursor: not-allowed; }
+  
+  button.leve { padding: 4px 10px; 
+    font-size: 16px }
+  
+  .acoes { display: flex; 
+    flex-wrap: wrap; 
+    gap: 10px; 
+    margin-top: 12px; }
+
+  #status { min-height: 1.5em; 
+    margin-top: 10px; 
+    color: var(--muted); }
+  
+  #status.erro { color: var(--err); }
+  
+  #recibo { margin-top: 16px; 
+    padding: 16px; 
+    border: 2px solid var(--ok); 
+    border-radius: 8px; }
+  
+  #recibo h3 { margin: 0 0 6px; 
+    color: var(--ok); 
+    font-size: 1.05rem; }
+  
+  .protocolo { font-family: ui-monospace, Menlo, Consolas, monospace; 
+    font-size: 1.15rem; 
+    font-weight: 700; }
+  
+  [hidden] { display: none !important; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+
+</style>
+</head>
+<body>
+    <div class="logosafemidia">
+        <a href="https://drive.google.com/file/d/1ilRX2uW3EzS24Jt4SPnxbiAJf2cDI6T0/view?usp=drive_link">
+          <img src="imagens/SM.webp" alt="" class="logosm">
+        </a>
+        <span class="bree-serif-regular textologosm">SafeMídia</span>
+    </div>
+    
+<div class="wrap">
+  <h1 class="registrodeprovas bree-serif-regular">Registro de provas</h1>
+  <p class="lead bree-serif-regular">Reúna conversas, imagens, áudios e documentos, gere um código de integridade para cada arquivo e receba um dossiê organizado para levar às autoridades.</p>
+  <div class="demo bree-serif-regular"><strong>Protótipo de demonstração.</strong> Nenhum arquivo é enviado a servidor algum: tudo fica no seu aparelho, e o protocolo gerado é fictício. Use apenas dados de teste.</div>
+
+  <ol class="steps">
+    <li class="step" id="p1">
+      <h2 class="autorize bree-serif-regular">Autorize o uso dos seus arquivos</h2>
+      <p class="denunc bree-serif-regular"><i>Para registrar a denúncia, precisamos tratar seus arquivos e dados, que podem ser sensíveis. Eles serão usados só para organizar e encaminhar o seu caso, e você pode pedir a exclusão a qualquer momento.</i></p>
+      <details>
+        <summary class="term bree-serif-regular">Ler o termo completo (modelo)</summary>
+        <p class="hint bree-serif-regular"><i>Texto de exemplo. O termo definitivo deve ser redigido com apoio jurídico, de acordo com a LGPD, e informar a finalidade, o tempo de guarda, quem terá acesso e como pedir a exclusão.</i></p>
+      </details>
+      <label class="check" for="consent"><input type="checkbox" id="consent"><span class="tratament bree-serif-regular">Li e autorizo o tratamento dos meus arquivos e dados para registrar e encaminhar minha denúncia.</span></label>
+    </li>
+
+    <li class="step locked" id="p2" inert>
+      <h2 class="escolha bree-serif-regular">Escolha os arquivos</h2>
+      <div class="aviso bree-serif-regular">
+        <strong class="antesdeenviar">Antes de enviar</strong>
+        <i class="imgint">Imagens íntimas e qualquer imagem de crianças e adolescentes em contexto sexual exigem um fluxo próprio. Nesta demonstração, não envie esse tipo de material. Procure o Disque 100 ou a SaferNet Brasil. Em risco imediato, ligue 190. Para apoio, ligue 180 (mulheres) ou 188 (CVV).</i>
+      </div>
+      <div class="bree-serif-regular" id="drop" tabindex="0" role="button" aria-label="Escolher arquivos">
+        <strong class="solte">Solte os arquivos aqui ou clique para escolher</strong>
+        <span style="color: #0b9eb2; font-size: 18px;">ZIP exportado do WhatsApp, mensagens (.txt), imagens, áudios, vídeos e PDFs</span>
+      </div>
+      <input type="file" id="file" multiple accept=".zip,.txt,.pdf,image/*,audio/*,video/*">
+      <p class="hint bree-serif-regular" style="margin-top:10px; font-size: 16px;">Seus arquivos não são alterados. O código de integridade (SHA-256) de cada um é calculado neste aparelho e permite mostrar depois que o arquivo não foi modificado.</p>
+      <ul id="lista"></ul>
+    </li>
+
+    <li class="step locked bree-serif-regular" id="p3" inert>
+      <h2 class="conteoque bree-serif-regular">Conte o que aconteceu</h2>
+      <label class="tipoocor" for="tipo" style="font-size: 20px;">Tipo de ocorrência</label>
+      <select class="escolhaopcao" id="tipo" style="font-size: 18px;">
+        <option>Escolha uma opção</option>
+        <option>Ameaça</option>
+        <option>Assédio</option>
+        <option>Difamação, calúnia ou injúria</option>
+        <option>Importunação</option>
+        <option>LGBTfobia</option>
+        <option>Misoginia</option>
+        <option>Outro</option>
+      </select>
+      <label class="relat" for="relato" style="font-size: 20px;">Relato (opcional)</label>
+      <textarea id="relato" class="desc" style="font-size: 18px;" placeholder="Descreva, com suas palavras, o que aconteceu e quando."></textarea>
+      <fieldset>
+        <legend class="comovocequerseidentificar" style="font-size: 20px;">Como você quer se identificar?</legend>
+        <label class="radio"><input type="radio" name="ident" value="anonimo" checked> Enviar de forma anônima</label>
+        <label class="radio"><input type="radio" name="ident" value="contato"> Informar meu contato</label>
+        <div id="contato" hidden>
+          <label class="nomeouapelido" for="nome">Nome ou apelido</label>
+          <input type="text" id="nome" autocomplete="off">
+          <label class="telouemail" for="via">Telefone ou e-mail para retorno</label>
+          <input type="text" id="via" autocomplete="off">
+        </div>
+        <p class="hint" style="margin-top:8px; font-size: 16px;">Em envio anônimo, todas as suas informações serão mantidas em absoluto sigilo.</p>
+      </fieldset>
+    </li>
+
+    <li class="step locked bree-serif-regular" id="p4" inert>
+      <h2 class="registredossie bree-serif-regular">Registre e baixe o dossiê</h2>
+      <p class="oregistro" style="font-size: 18px;">O registro reúne seus arquivos, os códigos de integridade, a data e a hora. Em um sistema real, a equipe revisaria o caso e faria o encaminhamento.</p>
+      <div class="acoes"><button class="principal bree-serif-regular" id="enviar" disabled style="font-size: 16px;">Registrar (simulação)</button></div>
+      <div id="status" aria-live="polite"></div>
+      <div id="recibo" hidden>
+        <h3>Registro concluído (simulação)</h3>
+        <p>Protocolo: <span class="protocolo" id="protocolo"></span></p>
+        <p class="hint">Código geral do conjunto (SHA-256):</p>
+        <p class="hash" id="geral"></p>
+        <p style="margin-top:10px">Guarde os arquivos originais sem alterá-los. Leve o dossiê e os arquivos ao registrar o boletim de ocorrência na delegacia ou na delegacia eletrônica do seu estado.</p>
+        <div class="acoes">
+          <button class="principal bree-serif-regular" id="pdf">Baixar dossiê em PDF</button>
+          <button class="bree-serif-regular" id="novo">Começar de novo</button>
+        </div>
+      </div>
+    </li>
+  </ol>
+</div>
+
+<script>
+(function () {
+  // Para testar com um servidor de verdade, informe o endereço aqui.
+  // Vazio = simulação: nada sai do aparelho.
+  var ENDPOINT = '';
+
+  var $ = function (id) { return document.getElementById(id); };
+  var state = { files: [], busy: 0, record: null };
+
+  function fmtSize(n) {
+    if (n < 1024) return n + ' B';
+    if (n < 1048576) return (n / 1024).toFixed(1).replace('.', ',') + ' KB';
+    if (n < 1073741824) return (n / 1048576).toFixed(1).replace('.', ',') + ' MB';
+    return (n / 1073741824).toFixed(2).replace('.', ',') + ' GB';
+  }
+
+  function sha256(buf) {
+    return crypto.subtle.digest('SHA-256', buf).then(function (d) {
+      return Array.prototype.map.call(new Uint8Array(d), function (b) {
+        return b.toString(16).padStart(2, '0');
+      }).join('');
+    });
+  }
+
+  function aviso(t, erro) { $('status').textContent = t; $('status').className = erro ? 'erro' : ''; }
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+
+  /* ---------- arquivos e hashes ---------- */
+  function processar(entry) {
+    state.busy++; refresh();
+    var buf;
+    return entry.file.arrayBuffer().then(function (b) {
+      buf = b;
+      return sha256(buf);
+    }).then(function (h) {
+      entry.hash = h;
+      if (!/\.zip$/i.test(entry.name)) return;
+      return JSZip.loadAsync(buf).then(function (zip) {
+        var itens = [];
+        zip.forEach(function (p, en) { if (!en.dir) itens.push(en); });
+        entry.inner = [];
+        var i = 0;
+        function prox() {
+          if (i >= itens.length) return;
+          var en = itens[i++];
+          entry.nota = 'Lendo o conteúdo do ZIP (' + i + ' de ' + itens.length + ')';
+          render();
+          return en.async('arraybuffer').then(function (ib) {
+            return sha256(ib).then(function (hh) {
+              entry.inner.push({ name: en.name, size: ib.byteLength, hash: hh });
+            });
+          }).then(prox);
+        }
+        return prox();
+      }).catch(function () {
+        entry.inner = null;
+        entry.erroInterno = 'Não foi possível listar o conteúdo do ZIP. O arquivo foi registrado inteiro.';
+      });
+    }).catch(function () {
+      entry.erro = 'Não foi possível ler este arquivo.';
+    }).then(function () {
+      entry.nota = '';
+      state.busy--; render(); refresh();
+    });
+  }
+
+  function adicionar(lista) {
+    if (!window.crypto || !crypto.subtle) {
+      aviso('Este navegador não permite calcular o código de integridade. Abra a página em um navegador atualizado, com conexão segura (https).', true);
+      return;
+    }
+    Array.prototype.forEach.call(lista, function (f) {
+      var entry = { file: f, name: f.name, size: f.size, type: f.type || 'desconhecido', hash: null, inner: null, nota: 'Calculando código de integridade...' };
+      state.files.push(entry);
+      processar(entry);
+    });
+    render();
+  }
+
+  function render() {
+    var ul = $('lista');
+    ul.innerHTML = '';
+    state.files.forEach(function (f, idx) {
+      var li = el('li');
+      var linha = el('div', 'linha');
+      var info = el('div', 'info');
+      info.appendChild(el('div', 'nome', f.name));
+      info.appendChild(el('div', 'meta', 'Tamanho: ' + fmtSize(f.size)));
+      if (f.nota) info.appendChild(el('div', 'meta', f.nota));
+      if (f.hash) info.appendChild(el('div', 'hash', 'SHA-256: ' + f.hash));
+      if (f.erro) info.appendChild(el('div', 'erro', f.erro));
+      if (f.erroInterno) info.appendChild(el('div', 'erro', f.erroInterno));
+      linha.appendChild(info);
+      var rm = el('button', 'leve', 'Remover');
+      rm.addEventListener('click', function () { state.files.splice(state.files.indexOf(f), 1); render(); refresh(); });
+      linha.appendChild(rm);
+      li.appendChild(linha);
+      if (f.inner && f.inner.length) {
+        var d = el('details', 'interno');
+        d.appendChild(el('summary', null, 'Ver conteúdo do ZIP (' + f.inner.length + (f.inner.length === 1 ? ' arquivo)' : ' arquivos)')));
+        f.inner.forEach(function (it) {
+          var row = el('div');
+          row.appendChild(el('div', 'nome', it.name));
+          row.appendChild(el('div', 'hash', fmtSize(it.size) + ' | SHA-256: ' + it.hash));
+          d.appendChild(row);
+        });
+        li.appendChild(d);
+      }
+      ul.appendChild(li);
+    });
+  }
+
+  /* ---------- etapas liberadas em ordem ---------- */
+  function validos() { return state.files.filter(function (f) { return f.hash && !f.erro; }); }
+
+  function trava(id, travada) {
+    var s = $(id);
+    s.classList.toggle('locked', travada);
+    s.inert = travada;
+  }
+
+  function refresh() {
+    var consent = $('consent').checked;
+    var temArquivos = consent && state.busy === 0 && validos().length > 0;
+    var temTipo = temArquivos && $('tipo').value !== '';
+    trava('p2', !consent);
+    trava('p3', !temArquivos);
+    trava('p4', !temTipo);
+    $('enviar').disabled = !temTipo || !!state.record;
+  }
+
+  /* ---------- registro ---------- */
+  function protocolo() {
+    var d = new Date();
+    var data = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+    var r = crypto.getRandomValues(new Uint8Array(4));
+    var cod = Array.prototype.map.call(r, function (b) { return b.toString(36).toUpperCase().padStart(2, '0'); }).join('').slice(0, 6);
+    return 'DEMO-' + data + '-' + cod;
+  }
+
+  function enviar() {
+    var arqs = validos();
+    var anonimo = document.querySelector('input[name=ident]:checked').value === 'anonimo';
+    $('enviar').disabled = true;
+    aviso('Registrando...');
+    var linhas = arqs.map(function (f) { return f.name + ':' + f.hash; }).sort().join('\n');
+    sha256(new TextEncoder().encode(linhas)).then(function (geral) {
+      var agora = new Date();
+      var rec = {
+        protocolo: protocolo(),
+        quando: agora,
+        categoria: $('tipo').value,
+        relato: $('relato').value.trim(),
+        anonimo: anonimo,
+        nome: anonimo ? '' : $('nome').value.trim(),
+        contato: anonimo ? '' : $('via').value.trim(),
+        arquivos: arqs.map(function (f) { return { name: f.name, size: f.size, type: f.type, hash: f.hash, inner: f.inner }; }),
+        geral: geral
+      };
+      var envio;
+      if (ENDPOINT) {
+        var fd = new FormData();
+        fd.append('metadata', JSON.stringify(rec));
+        arqs.forEach(function (f) { fd.append('arquivos', f.file, f.name); });
+        envio = fetch(ENDPOINT, { method: 'POST', body: fd }).then(function (r) { if (!r.ok) throw new Error('falha'); });
+      } else {
+        envio = new Promise(function (ok) { setTimeout(ok, 900); });
+      }
+      return envio.then(function () {
+        state.record = rec;
+        $('protocolo').textContent = rec.protocolo;
+        $('geral').textContent = rec.geral;
+        $('recibo').hidden = false;
+        aviso('');
+        refresh();
+      });
+    }).catch(function () {
+      aviso('Não foi possível concluir o registro. Tente novamente.', true);
+      refresh();
+    });
+  }
+
+  /* ---------- dossiê em PDF ---------- */
+  function pdfSafe(s) { return String(s).replace(/[^\u0020-\u007E\u00A0-\u00FF]/g, '?'); }
+
+  function gerarPdf() {
+    var r = state.record;
+    var J = window.jspdf && window.jspdf.jsPDF;
+    if (!r) return;
+    if (!J) { aviso('Não foi possível carregar o gerador de PDF. Verifique a conexão e tente de novo.', true); return; }
+    var doc = new J({ unit: 'mm', format: 'a4' });
+    var M = 20, W = 210, y = M;
+
+    function escrever(texto, o) {
+      o = o || {};
+      var size = o.size || 10, ind = o.ind || 0;
+      doc.setFont(o.font || 'helvetica', o.style || 'normal');
+      doc.setFontSize(size);
+      doc.setTextColor(o.cor || 20);
+      var lh = size * 0.3528 * 1.4;
+      doc.splitTextToSize(pdfSafe(texto), W - 2 * M - ind).forEach(function (l) {
+        if (y + lh > 280) { doc.addPage(); y = M; }
+        doc.text(l, M + ind, y);
+        y += lh;
+      });
+      y += (o.gap || 0);
+    }
+
+    var quando = r.quando.toLocaleString('pt-BR', { dateStyle: 'long', timeStyle: 'medium' });
+    escrever('Dossiê de registro de provas', { size: 20, style: 'bold', gap: 2 });
+    escrever('Modelo de demonstração. Dados fictícios, sem valor legal.', { size: 10, cor: 150, gap: 6 });
+
+    escrever('Protocolo: ' + r.protocolo, { size: 11, style: 'bold' });
+    escrever('Data e hora do registro: ' + quando, { size: 10 });
+    escrever('Referência em UTC: ' + r.quando.toISOString(), { size: 10, gap: 4 });
+    escrever('Tipo de ocorrência: ' + r.categoria, { size: 10 });
+    escrever('Identificação: ' + (r.anonimo ? 'envio anônimo' : ((r.nome || 'não informado') + (r.contato ? ', contato: ' + r.contato : ''))), { size: 10, gap: 4 });
+    if (r.relato) {
+      escrever('Relato', { size: 11, style: 'bold' });
+      escrever(r.relato, { size: 10, gap: 4 });
+    }
+
+    escrever('Arquivos registrados (' + r.arquivos.length + ')', { size: 12, style: 'bold', gap: 2 });
+    r.arquivos.forEach(function (a, i) {
+      escrever((i + 1) + '. ' + a.name, { size: 10, style: 'bold' });
+      escrever('Tipo: ' + a.type + '   Tamanho: ' + fmtSize(a.size), { size: 9, ind: 5 });
+      escrever('SHA-256: ' + a.hash, { size: 8, font: 'courier', ind: 5, gap: a.inner ? 1 : 3 });
+      if (a.inner && a.inner.length) {
+        escrever('Conteúdo do ZIP (' + a.inner.length + ' arquivos):', { size: 9, style: 'italic', ind: 5 });
+        a.inner.forEach(function (it) {
+          escrever(it.name + ' (' + fmtSize(it.size) + ')', { size: 8, ind: 9 });
+          escrever(it.hash, { size: 7, font: 'courier', ind: 9 });
+        });
+        y += 3;
+      }
+    });
+
+    escrever('Código geral do conjunto (SHA-256)', { size: 11, style: 'bold' });
+    escrever(r.geral, { size: 8, font: 'courier', gap: 4 });
+    escrever('Como usar este documento', { size: 11, style: 'bold' });
+    escrever('Guarde os arquivos originais sem alterá-los. O código SHA-256 permite demonstrar que um arquivo não foi modificado depois deste registro: se o código recalculado for igual ao daqui, o conteúdo é o mesmo. Este dossiê não substitui o boletim de ocorrência, a ata notarial em cartório nem a perícia técnica.', { size: 9 });
+
+    var n = doc.internal.getNumberOfPages();
+    for (var p = 1; p <= n; p++) {
+      doc.setPage(p);
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(120);
+      doc.text(r.protocolo + '   |   Página ' + p + ' de ' + n, W - M, 290, { align: 'right' });
+    }
+    doc.save('dossie-' + r.protocolo + '.pdf');
+  }
+
+  /* ---------- eventos ---------- */
+  var drop = $('drop'), input = $('file');
+  drop.addEventListener('click', function () { input.click(); });
+  drop.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } });
+  input.addEventListener('change', function () { adicionar(input.files); input.value = ''; });
+  ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('over'); }); });
+  ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('over'); }); });
+  drop.addEventListener('drop', function (e) { adicionar(e.dataTransfer.files); });
+
+  $('consent').addEventListener('change', refresh);
+  $('tipo').addEventListener('change', refresh);
+  Array.prototype.forEach.call(document.querySelectorAll('input[name=ident]'), function (r) {
+    r.addEventListener('change', function () {
+      $('contato').hidden = document.querySelector('input[name=ident]:checked').value === 'anonimo';
+    });
+  });
+  $('enviar').addEventListener('click', enviar);
+  $('pdf').addEventListener('click', gerarPdf);
+  $('novo').addEventListener('click', function () { location.reload(); });
+  refresh();
+})();
+</script>
+</body>
+</html>
