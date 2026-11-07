@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device=width, initial-scale=1">
+        <title>Login</title>
+        <link rel="stylesheet" href="https://cloudflare.com">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+        
+        <style>
+            
+            .bree-serif-regular {
+             font-family: "Bree Serif", serif;
+             font-weight: 400;
+             font-style: normal; }
+            
+            body { 
+                background-color: #CBE6FF;
+                font-family: "Bree Serif", serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+                
+            .logosm {
+                width: 103px;
+                height: 107px;
+            }
+
+            .form-login {
+                display: flex; /*Ativa o flexbox*/
+                flex-direction: column; /*Altera a direção do flexbox*/
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh; /*altura mínima*/
+                gap: 10px; /*Altera a distância entre os elementos em um container <div>*/
+                margin: 0;
+            }
+
+            .ins-email {
+                background-color: #A3D3FF; /*altera cor de fundo do elemento*/
+                border: 2px solid; /*altera a espessura da borda do elemento*/
+                border-radius: 30px; /*Arredonda os cantos do elemento*/
+                border-color: #25678E; /*altera a cor da borda*/
+                color: #25678E; /*altera a cor do texto que está dentro do elemento*/
+                height: 35px; /*altera a altura*/
+                width: 279px; /*altera a largura*/
+                font-size: 17px; /*altera o tamanho da fonte do texto*/
+                text-align: center;
+            }
+            .ins-email::placeholder {
+                font-family: "Bree Serif" serif;
+                color: #25678E;
+                font-size: 20px;
+                text-align: center;
+                opacity: 0.5;
+            }
+
+            .ins-senha {
+                background-color: #A3D3FF;
+                border: 2px solid;
+                border-radius: 30px;
+                border-color: #25678E;
+                color: #25678E;
+                height: 35px;
+                width: 279px;
+                font-size: 17px;
+                text-align: center;
+            }
+            .ins-senha::placeholder {
+                font-size: 20px;
+                color: #25678E;
+                opacity: 0.5;
+                text-align: center;
+            }
+
+            .entrarconta {
+                height: 42px;
+                width: 100px;
+                border: 2px solid;
+                border-radius: 30px;
+                border-color: #25678E;
+                background-color: #59B8FD;
+                color: #1C597D;
+                font-size: 20px;
+            }
+
+            .login-social {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+            }
+            
+            .botao-google {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 55px;
+                width: 55px;
+                border: 2px solid;
+                border-radius: 30px;
+                border-color: #25678E;
+                background-color: #A3D3FF;
+                cursor: pointer;
+            }
+
+            .google-icon {
+                font-family: Arial, sans-serif;
+                font-size: 50px;
+                font-weight: bold;
+                color: #4285F4;
+            }
+
+            .google-logo {
+                height: 45px;
+                width: 45px;
+                margin-top: 11px;
+            }
+
+            .botao-facebook {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 55px;
+                width: 55px;
+                border: 2px solid;
+                border-radius: 30px;
+                border-color: #25678E;
+                background-color: #A3D3FF;
+                cursor: pointer; /*cursor: pointer; serve para alterar o formato do cursor do mouse ao posicioná-lo sobre um elemento.*/
+            }
+
+            .facebook-icon {
+                font-size: 50px;
+                font-weight: bold;
+                color: #4285F4;
+            }
+
+            .logo-meta {
+                height: 38px;
+                width: 43px;
+            }
+
+        </style>
+    
+    </head>
+    
+
+    <body>
+        
+        <div class="form-login">
+
+            <a href="https://drive.google.com/file/d/1ilRX2uW3EzS24Jt4SPnxbiAJf2cDI6T0/view?usp=drive_link">
+            <img src="imagens/SM.webp" alt="" class="logosm">
+            </a>
+        
+            <h1 style="color: #25678E;">Olá!</h1>
+            
+            <form>
+                <input class="ins-email" type="email" placeholder="Insira seu e-mail">
+                <p></p>
+                <input class="ins-senha" type="password" placeholder="Insira sua senha">
+            </form>
+            
+            <button style="margin-top: 10px; cursor: pointer;" class="entrarconta" type="submit"><b>Entrar</b></button>
+            
+            <a href="link-da-pagina-de-redefinição" style="color: #007bff; text-decoration: none; margin-top: 10px;">
+                Redefinir senha
+            </a>
+
+            <a href="redirecionar-a-pagina-de-cadastro" style="color: #007bff; text-decoration: none;">
+                Cadastre-se
+            </a>
+
+            <span style="margin-top: 10px; font-size: 20px; color: #25678E;">Faça o login com:</span>
+            
+            <div class="login-social">
+                <button class="botao-google">
+                    <span class="google-icon">
+                        <img class="google-logo" src="imagens/Google logo.webp">
+                    </span>
+                </button>
+
+                <button class="botao-facebook">
+                    <span class="facebook-icon">
+                        <img class="logo-meta" src="imagens/Meta Logo.webp">
+                    </span>
+                </button>
+            </div>
+        
+        </div>
+    </body>
+    <footer>
+        <h6 title="SafeMídia adverte: o uso indevido de quaisquer elementos apresentados neste site acarretará em processos jurídicos." style="font-style: italic; overflow-wrap: break-word">Copyright ©  2026 -  SafeMídia - Todos os direitos reservados.</h6>
+    </footer>
+</html>
