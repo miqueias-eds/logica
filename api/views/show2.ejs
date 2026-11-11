@@ -11,26 +11,29 @@
     <table border="1">
         <thead>
             <tr>
-                <td>Nome</td>
-                <td>Sobrenome</td>
-                <td>Ação</td>
+                <td>nome</td>
+                <td>email</td>
+                <td>telefone</td>
             </tr>
         </thead>
         <tbody>
             <% crud.forEach(function(details) { %>
                 <tr>
                     <td>
-                        <%= details.name %>
+                        <%= details.nome %>
                     </td>
                     <td>
-                        <%= details.surname %>
+                        <%= details.email %>
                     </td>
-                    <td><a href="/edit/<%= details._id %>">Editar</a> - <a href="/delete/<%= details._id %>">Deletar</a>
+                    <td>
+                        <%= details.telefone %>
+                    </td>
+                    <td><a href="/edit2/<%= details._id %>">Editar</a> - <a href="/delete2/<%= details._id %>">Deletar</a>
                     </td>
                 </tr>
                 <% }) %>
         </tbody>
-    </table> <button><a href="/index">Novo</a></button>
+    </table> <button><a href="/index2">Novo</a></button>
 </body>
 
 </html>

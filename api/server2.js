@@ -5,7 +5,7 @@ const dotenv = require("dotenv")
 
 dotenv.config()
 
-const url = Process.env.DATABASE_URL
+const url = process.env.DATABASE_URL
 
 const client = new MongoClient(url)
 let collection
@@ -14,30 +14,30 @@ app.set("view engine", "ejs")
 app.use(express.urlencoded(
     {extended:true}))
 
-app.get("/index", (req, res) = (
-    res.render("index.ejs") 
+app.get("/index2", (req, res) => (
+    res.render("index2.ejs") 
 ))
 
-app.post("/show", async (req, res) => {
+app.post("/show2", async (req, res) => {
     await collection.insertOne ({
         nome: req.body.nome,
         email: req.body.email,
         telefone: req.body.telefone
     })
-    res.redirect("/show")
+    res.redirect("/show2")
 } )
 
-app.get("/show", async(req, res) => {
+app.get("/show2", async(req, res) => {
     const crud = await collection.find().toArray()
-    res.render("show.ejs", {crud})
+    res.render("show2.ejs", {crud})
 })
 
-app.get("/edit/:id", async (req, res) => {
+app.get("/edit2/:id", async (req, res) => {
     const crud = await collection.find({_id:new ObjectId(req.params.id)})
-    req.render("edit.ejs", {crud})
+    req.render("edit2.ejs", {crud})
 })
 
-api.post('/edit/:id', async (req, res) => {
+app.post('/edit2/:id', async (req, res) => {
     await collection.updateOne(
         {_id: new ObjectId(req.params.id) },
         {
@@ -48,12 +48,12 @@ api.post('/edit/:id', async (req, res) => {
             }
         }
     )
-    res.redirect("/show")
+    res.redirect("/show2")
 })
 
-app.get("/delete/:id", async (req, res) => {
+app.get("/delete2/:id", async (req, res) => {
     await collection.deleteOne({_id: ObjectId(req.params.id)})
-    res.redirect("/show")
+    res.redirect("/show2")
 })
 
 async function iniciar(){
@@ -66,3 +66,7 @@ async function iniciar(){
         console.log("a porta do servidor está rodando na porta 3000")
     })
 }
+
+iniciar().catch(function(erro){
+    console.error("Erro ao iniciar", erro)
+})
