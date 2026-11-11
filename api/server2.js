@@ -31,3 +31,38 @@ app.get("/show", async(req, res) => {
     const crud = await collection.find().toArray()
     res.render("show.ejs", {crud})
 })
+
+app.get("/edit/:id", async (req, res) => {
+    const crud = await collection.find({_id:new ObjectId(req.params.id)})
+    req.render("edit.ejs", {crud})
+})
+
+api.post('/edit/:id', async (req, res) => {
+    await collection.updateOne(
+        {_id: new ObjectId(req.params.id) },
+        {
+            $set:{
+                name: req.body.name,
+                email: req.body.email,
+                telefone: req.body.telefone
+            }
+        }
+    )
+    res.redirect("/show")
+})
+
+app.get("/delete/:id", async (req, res) => {
+    await collection.deleteOne({_id: ObjectId(req.params.id)})
+    res.redirect("/show")
+})
+
+async function iniciar(){
+    await client.connect()
+    const db = client.db("aluno")
+    collection = db.collection("crud")
+    console.log("conectou com o nosso banco")
+
+    app.listen(3000, function(){
+        console.log("a porta do servidor está rodando na porta 3000")
+    })
+}
