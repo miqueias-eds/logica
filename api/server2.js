@@ -22,8 +22,11 @@ app.get("/index2", (req, res) => (
 app.post("/show2", async (req, res) => {
     await collection.insertOne ({
         nome: req.body.nome,
+        cpf: req.body.cpf,
         email: req.body.email,
-        telefone: req.body.telefone
+        telefone: req.body.telefone,
+        genero: req.body.genero,
+        senha: req.body.senha
     })
     res.redirect("/show2")
 } )
