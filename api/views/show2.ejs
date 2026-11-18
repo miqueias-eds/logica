@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Meu CRUD</title>
+    <title>SafeMídia</title>
 </head>
 
 <body>
@@ -24,10 +24,19 @@
                         <%= details.nome %>
                     </td>
                     <td>
+                        <%= details.cpf %>
+                    </td>
+                    <td>
                         <%= details.email %>
                     </td>
                     <td>
                         <%= details.telefone %>
+                    </td>
+                    <td>
+                        <%= details.genero %>
+                    </td>
+                    <td>
+                        <%= details.senha %>
                     </td>
                     <td><a href="/edit2/<%= details._id %>">Editar</a> - <a href="/delete2/<%= details._id %>">Deletar</a>
                     </td>

@@ -44,8 +44,11 @@ app.post('/edit2/:id', async (req, res) => {
         {
             $set:{
                 name: req.body.nome,
+                cpf: req.body.cpf,
                 email: req.body.email,
-                telefone: req.body.telefone
+                telefone: req.body.telefone,
+                genero: req.body.genero,
+                senha: req.body.senha
             }
         }
     )
