@@ -61,7 +61,7 @@ app.get("/delete2/:id", async (req, res) => {
 async function iniciar(){
     //conectar com o mongodb
     await client.connect()
-    const db = client.db("aluno")
+    const db = client.db("SafeMídia")
     collection = db.collection("crud")
     console.log("conectou com o nosso banco")
 
