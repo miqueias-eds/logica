@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 const {MongoClient} = require("mongodb")
+const ObjectId = require("mongodb").ObjectId
 const dotenv = require("dotenv")
 
 dotenv.config()
@@ -33,16 +34,16 @@ app.get("/show2", async(req, res) => {
 })
 
 app.get("/edit2/:id", async (req, res) => {
-    const crud = await collection.find({_id:new ObjectId(req.params.id)})
-    req.render("edit2.ejs", {crud})
+    const crud = await collection.find({_id:new ObjectId(req.params.id)}).toArray()
+    res.render("edit2.ejs", {crud})
 })
 
-app.post('/edit2/:id', async (req, res) => {
+app.post('/edit2/:id', async (req, res) => { 
     await collection.updateOne(
         {_id: new ObjectId(req.params.id) },
         {
             $set:{
-                name: req.body.name,
+                name: req.body.nome,
                 email: req.body.email,
                 telefone: req.body.telefone
             }
@@ -52,11 +53,13 @@ app.post('/edit2/:id', async (req, res) => {
 })
 
 app.get("/delete2/:id", async (req, res) => {
-    await collection.deleteOne({_id: ObjectId(req.params.id)})
+    await collection.deleteOne({_id:new ObjectId(req.params.id)})
     res.redirect("/show2")
 })
 
+//iniciar o banco de dados e o server
 async function iniciar(){
+    //conectar com o mongodb
     await client.connect()
     const db = client.db("aluno")
     collection = db.collection("crud")

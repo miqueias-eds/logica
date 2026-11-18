@@ -3,20 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>My CRUD in NodeJS</title>
+    <title>Meu CRUD</title>
 </head>
 
 <body>
-    <h2>Registros</h2>
+    <h2 style="margin-left: 220px;">Registros</h2>
     <table border="1">
         <thead>
-            <tr>
-                <td>nome</td>
-                <td>email</td>
-                <td>telefone</td>
+            <tr style="font-size: 20px;">
+                <td style="color: red;">nome</td>
+                <td style="color: red;">email</td>
+                <td style="color: red;">telefone</td>
+                <td style="color: red;">Opções</td>
             </tr>
         </thead>
-        <tbody>
+        <tbody style="font-size: 20px;">
             <% crud.forEach(function(details) { %>
                 <tr>
                     <td>
@@ -33,7 +34,7 @@
                 </tr>
                 <% }) %>
         </tbody>
-    </table> <button><a href="/index2">Novo</a></button>
+    </table> <button style="color: rgb(0, 0, 0); border-color: rgb(5, 73, 0); border-radius: 10px; width: 70px; height: 36px; background-color: rgb(12, 194, 2); font-size: 20px; margin-left: 230px; margin-top: 25px; "><a style="color: black;" href="/index2">Novo</a></button>
 </body>
 
 </html>

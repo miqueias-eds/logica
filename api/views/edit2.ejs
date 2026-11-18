@@ -10,9 +10,9 @@
         <h2>Editar Registro</h2>
         <% crud.forEach(function(details) { %>
             <form action="/edit2/<%= details._id %>" method="POST">
-                <input type="text" value="<%= details.name %>" name="name">
-                <input type="text" value="<%= details.email %>" name="email">
-                <input type="number" value="<%= details.telefone %>" name="telefone">
+                <input type="text" value="<%= details.nome %>" name="nome">
+                <input type="email" value="<%= details.email %>" name="email">
+                <input type="text" value="<%= details.telefone %>" name="telefone">
                 <br/>
                 <button>
                     <a href="/show2">Todos</a>
