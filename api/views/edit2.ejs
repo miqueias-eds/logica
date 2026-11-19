@@ -9,7 +9,7 @@
     <body>
         <h2>Editar Registro</h2>
         <% crud.forEach(function(details) { %>
-            <form action="/edit/<%= details._id %>" method="POST">
+            <form action="/edit2/<%= details._id %>" method="POST">
                 <input type="text" value="<%= details.nome %>" name="nome">
                 <input type="text" value="<%= details.cpf %>" name="cpf">
                 <input type="text" value="<%= details.email %>" name="email">
