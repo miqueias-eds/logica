@@ -19,6 +19,7 @@ app.get("/index2", (req, res) => (
     res.render("index2.ejs") 
 ))
 
+//Cadastro
 app.post("/show2", async (req, res) => {
     await collection.insertOne ({
         nome: req.body.nome,
@@ -31,16 +32,20 @@ app.post("/show2", async (req, res) => {
     res.redirect("/show2")
 } )
 
+
+//visualizar o cadastro
 app.get("/show2", async(req, res) => {
     const crud = await collection.find().toArray()
     res.render("show2.ejs", {crud})
 })
 
+//visualizar edição
 app.get("/edit2/:id", async (req, res) => {
     const crud = await collection.find({_id:new ObjectId(req.params.id)}).toArray()
     res.render("edit2.ejs", {crud})
 })
 
+//editar
 app.post('/edit2/:id', async (req, res) => { 
     await collection.updateOne(
         {_id: new ObjectId(req.params.id) },
@@ -58,6 +63,8 @@ app.post('/edit2/:id', async (req, res) => {
     res.redirect("/show2")
 })
 
+
+//deletar
 app.get("/delete2/:id", async (req, res) => {
     await collection.deleteOne({_id:new ObjectId(req.params.id)})
     res.redirect("/show2")

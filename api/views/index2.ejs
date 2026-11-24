@@ -48,11 +48,13 @@
             height: 25px;
             background-color: #A3D3FF;
             border-color: #25678E, solid;
-            font-family: "Bree Serif", serif; }
+            font-family: "Bree Serif", serif;
+            margin-bottom: 10px; }
 
         .CpF::placeholder {
                 text-align: center;
-                font-size: 20px; }
+                font-size: 20px;
+                }
 
          .EmAil {
             border-radius: 30px;
@@ -74,7 +76,11 @@
             background-color: #A3D3FF;
             border-color: #25678E, solid;
             font-family: "Bree Serif", serif;
-            }
+            margin-bottom: 10px; }
+
+            .telf::placeholder {
+                text-align: center;
+                font-size: 20px; }
 
             .gen {
                 border-radius: 30px;
@@ -83,7 +89,11 @@
             background-color: #A3D3FF;
             border-color: #25678E;
             font-family: "Bree Serif", serif;
-            }
+            margin-bottom: 10px;}
+
+            .gen::placeholder {
+                text-align: center;
+                font-size: 20px; }
 
             .sen {
                 border-radius: 30px;
@@ -92,7 +102,11 @@
             background-color: #A3D3FF;
             border-color: #25678E;
             font-family: "Bree Serif", serif;
-            }
+            margin-bottom: 10px;}
+
+            .sen::placeholder {
+                text-align: center;
+                font-size: 20px; }
 
             .botaocadastrese {
                 background: #0E4F7F;
@@ -101,27 +115,40 @@
                 color: white;
                 font-family: "Bree Serif", serif;
                 margin-top: 10px;
+                width: 150px;
+                height: 40px;
+                font-size: 15px;
             }
 
             .ncos{
                 margin: 0;
                 margin-right: 70px;
-            }
+            color: #25678E;}
 
             .cpftitle{
                 margin: 0;
                 margin-right: 260px;
-            }
+            color: #25678E;}
 
             .emailtitle{
                 margin: 0;
                 margin-right: 260px;
-            }
+            color: #25678E;}
 
             .teltitle{
                 margin: 0;
                 margin-right: 220px;
-            }
+            color: #25678E;}
+
+            .gentitle{
+                margin: 0;
+                margin-right: 245px;
+            color: #25678E;}
+
+            .senhatitle{
+                margin: 0;
+                margin-right: 255px;
+            color: #25678E;}
 
     </style>
 </head>
@@ -138,9 +165,9 @@
         <input class="EmAil" type="email" placeholder="exemplo@email.com" name="email">
         <h4 class="teltitle">Telefone *</h4>
         <input class="telf" type="tel" placeholder="(00) 0.0000-0000" name="telefone">
-        <h4>Gênero</h4>
+        <h4 class="gentitle">Gênero</h4>
         <input class="gen" type="text" placeholder="Selecione seu gênero" name="genero">
-        <h4>Senha</h4>
+        <h4 class="senhatitle">Senha</h4>
         <input class="sen" type="password" placeholder="Mínimo 6 caracteres" name="senha">
         
                     
