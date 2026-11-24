@@ -64,7 +64,7 @@ app.post('/edit2/:id', async (req, res) => {
 })
 
 
-//deletar
+//ler e deletar
 app.get("/delete2/:id", async (req, res) => {
     await collection.deleteOne({_id:new ObjectId(req.params.id)})
     res.redirect("/show2")
