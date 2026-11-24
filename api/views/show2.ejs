@@ -1,25 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
     <title>SafeMídia</title>
+
+    <style>
+
+    .bree-serif-regular {
+    font-family: "Bree Serif", serif;
+    font-weight: 400;
+    font-style: normal; }
+     
+
+
+    .corpo {
+    background-color: #CBE6FF;
+    font-family: "Bree Serif", serif; }
+
+    .regist {
+        text-align: center;
+        font-size: 50px;
+        color: #25678E;
+    }
+
+    .tabela {
+        width: fit-content;
+        margin: 0 auto;
+        border-radius: 10px;
+        
+    }
+
+    .botão {
+        background-color: #0E4F7F;
+        border-radius: 10px;
+        border-color: #104B6E;
+        color: white;
+        width: 90px;
+        height: 45px;
+        display: block;
+        margin: 0 auto;
+        margin-top: 20px;
+        font-family: "Bree Serif", serif;
+    }
+
+    </style>
 </head>
 
-<body>
-    <h2 style="margin-left: 500px;">Registros</h2>
-    <table style="margin-left: 380px;" border="1">
+<body class="corpo">
+    <h2 class="regist">Registros</h2>
+    <table class="tabela", border="1">
         <thead>
-            <tr style="font-size: 20px;">
-                <td>nome</td>
-                <td>cpf</td>
-                <td>email</td>
-                <td>telefone</td>
-                <td>genero</td>
-                <td>senha</td>
+            <tr style="font-size: 30px; text-align: center; color: #25678E;">
+                <td>Nome</td>
+                <td>CPF</td>
+                <td>Email</td>
+                <td>Telefone</td>
+                <td>Gênero</td>
+                <td>Senha</td>
             </tr>
         </thead>
-        <tbody style="font-size: 20px;">
+        <tbody style="font-size: 25px;">
             <% crud.forEach(function(details) { %>
                 <tr>
                     <td>
@@ -45,7 +90,10 @@
                 </tr>
                 <% }) %>
         </tbody>
-    </table> <button style="color: black; border-color: rgb(13, 64, 108); border-radius: 10px; width: 70px; height: 36px; background-color: rgb(87, 160, 255); font-size: 20px; margin-left: 510px; margin-top: 25px; "><a style="color: black;" href="/index2">Novo</a></button>
+    </table> 
+    
+    <button class="botão"><a href="/index2">Novo</a></button>
+
 </body>
 
 </html>
