@@ -34,26 +34,30 @@
             width: 342px;
             height: 25px;
             background-color: #A3D3FF;
-            border-color: #25678E, solid;
+            border: 2px #25678E, solid;
             font-family: "Bree Serif", serif;
             margin-bottom: 10px; }
 
         .digitenome::placeholder {
                 text-align: center;
-                font-size: 20px; }
+                font-size: 20px;
+                color:#25678E;
+                opacity: 50%; }
 
         .CpF {
             border-radius: 30px;
             width: 342px;
             height: 25px;
             background-color: #A3D3FF;
-            border-color: #25678E, solid;
+            border: 2px #25678E solid;
             font-family: "Bree Serif", serif;
             margin-bottom: 10px; }
 
         .CpF::placeholder {
                 text-align: center;
                 font-size: 20px;
+                color:#25678E;
+                opacity: 50%;
                 }
 
          .EmAil {
@@ -61,56 +65,64 @@
             width: 342px;
             height: 25px;
             background-color: #A3D3FF;
-            border-color: #25678E, solid;
+            border: 2px #25678E, solid;
             font-family: "Bree Serif", serif;
             margin-bottom: 10px; }
 
             .EmAil::placeholder {
                 text-align: center;
-                font-size: 20px; }
+                font-size: 20px;
+            color:#25678E;
+                opacity: 50%; }
 
             .telf {
                 border-radius: 30px;
             width: 342px;
             height: 25px;
             background-color: #A3D3FF;
-            border-color: #25678E, solid;
+            border: 2px #25678E, solid;
             font-family: "Bree Serif", serif;
             margin-bottom: 10px; }
 
             .telf::placeholder {
                 text-align: center;
-                font-size: 20px; }
+                font-size: 20px;
+            color:#25678E;
+                opacity: 50%; }
 
             .gen {
                 border-radius: 30px;
             width: 342px;
             height: 25px;
             background-color: #A3D3FF;
-            border-color: #25678E;
+            border: 2px solid #25678E;
             font-family: "Bree Serif", serif;
             margin-bottom: 10px;}
 
             .gen::placeholder {
                 text-align: center;
-                font-size: 20px; }
+                font-size: 20px;
+            color:#25678E;
+                opacity: 50%; }
 
             .sen {
-                border-radius: 30px;
+            border-radius: 30px;
             width: 342px;
             height: 25px;
             background-color: #A3D3FF;
-            border-color: #25678E;
+            border: 2px solid #25678E;
             font-family: "Bree Serif", serif;
             margin-bottom: 10px;}
 
             .sen::placeholder {
                 text-align: center;
-                font-size: 20px; }
+                font-size: 20px;
+            color:#25678E;
+                opacity: 50%; }
 
             .botaocadastrese {
                 background: #0E4F7F;
-                border-color: #104B6E;
+                border: 2px solid #104B6E;
                 border-radius: 15px;
                 color: white;
                 font-family: "Bree Serif", serif;
@@ -118,37 +130,44 @@
                 width: 150px;
                 height: 40px;
                 font-size: 15px;
+                cursor: pointer;
             }
 
             .ncos{
                 margin: 0;
-                margin-right: 70px;
-            color: #25678E;}
+                margin-right: 38px;
+            color: #25678E;
+            font-family: "Bree Serif", serif;}
 
             .cpftitle{
                 margin: 0;
                 margin-right: 260px;
-            color: #25678E;}
+            color: #25678E;
+            font-family: "Bree Serif", serif;}
 
             .emailtitle{
                 margin: 0;
                 margin-right: 260px;
-            color: #25678E;}
+            color: #25678E;
+            font-family: "Bree Serif", serif;}
 
             .teltitle{
                 margin: 0;
                 margin-right: 220px;
-            color: #25678E;}
+            color: #25678E;
+            font-family: "Bree Serif", serif;}
 
             .gentitle{
                 margin: 0;
                 margin-right: 245px;
-            color: #25678E;}
+            color: #25678E;
+            font-family: "Bree Serif", serif;}
 
             .senhatitle{
                 margin: 0;
-                margin-right: 255px;
-            color: #25678E;}
+                margin-right: 238px;
+            color: #25678E;
+            font-family: "Bree Serif", serif;}
 
     </style>
 </head>
@@ -157,7 +176,7 @@
     <h2 class="cadtitle">CADASTRO<h2>
     <div>
         <form class="formulario" action="/show2" method="POST">
-        <h4 class="ncos">Nome completo ou social</h4>
+        <h4 class="ncos">Nome completo ou social *</h4>
         <input class="digitenome" type="text" placeholder="Insira seu nome completo ou social" name="nome">
         <h4 class="cpftitle">CPF *</h4>
         <input class="CpF" type="number" placeholder="000.000.000-00" name="cpf">
@@ -167,7 +186,7 @@
         <input class="telf" type="tel" placeholder="(00) 0.0000-0000" name="telefone">
         <h4 class="gentitle">Gênero</h4>
         <input class="gen" type="text" placeholder="Selecione seu gênero" name="genero">
-        <h4 class="senhatitle">Senha</h4>
+        <h4 class="senhatitle">Senha *</h4>
         <input class="sen" type="password" placeholder="Mínimo 6 caracteres" name="senha">
         
                     

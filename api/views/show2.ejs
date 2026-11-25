@@ -35,25 +35,44 @@
         
     }
 
-    .botão {
-        background-color: #0E4F7F;
-        border-radius: 10px;
-        border-color: #104B6E;
-        color: white;
-        width: 90px;
-        height: 45px;
-        display: block;
-        margin: 0 auto;
-        margin-top: 20px;
-        font-family: "Bree Serif", serif;
-    }
+    .botao {
+    /* Aparência */
+    background-color: #0E4F7F;
+    color: white;
+    border: 1px solid #104B6E;
+    border-radius: 10px;
+
+    /* Dimensões */
+    width: 90px;
+    height: 45px;
+    box-sizing: border-box;
+
+    /* Alinhamento do texto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Centralização horizontal do botão */
+    margin: 20px auto 0;
+
+    /* Texto */
+    font-family: "Bree Serif", serif;
+    font-size: 18px;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: background-color 0.3s; }
+
+    /* Efeito ao passar o mouse */
+    .botao:hover {
+    background-color: #25678E; }
 
     </style>
 </head>
 
 <body class="corpo">
     <h2 class="regist">Registros</h2>
-    <table class="tabela", border="1">
+    <table class="tabela" border="1">
         <thead>
             <tr style="font-size: 30px; text-align: center; color: #25678E;">
                 <td>Nome</td>
@@ -62,6 +81,7 @@
                 <td>Telefone</td>
                 <td>Gênero</td>
                 <td>Senha</td>
+                <td>Opções</td>
             </tr>
         </thead>
         <tbody style="font-size: 25px;">
@@ -83,7 +103,7 @@
                         <%= details.genero %>
                     </td>
                     <td>
-                        <%= details.senha %>
+                        ••••••••
                     </td>
                     <td><a href="/edit2/<%= details._id %>">Editar</a> - <a href="/delete2/<%= details._id %>">Deletar</a>
                     </td>
@@ -92,7 +112,7 @@
         </tbody>
     </table> 
     
-    <button class="botão"><a href="/index2">Novo</a></button>
+    <a class="botao" href="/index2">Novo</a>
 
 </body>
 
